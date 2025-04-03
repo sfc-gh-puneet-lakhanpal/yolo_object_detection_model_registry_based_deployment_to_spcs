@@ -2,14 +2,14 @@ create database if not exists X;
 use database X;
 create schema if not exists Y;
 use schema Y;
-CREATE COMPUTE POOL defect_detection_gpu_nv_s_cp
+CREATE COMPUTE POOL object_detection_gpu_nv_s_cp
   MIN_NODES = 1
   MAX_NODES = 1
   INSTANCE_FAMILY = GPU_NV_S
   AUTO_RESUME = TRUE
   AUTO_SUSPEND_SECS = 300;
-show services in compute pool defect_detection_gpu_nv_s_cp;
-alter compute pool defect_detection_gpu_nv_s_cp stop all;
+show services in compute pool object_detection_gpu_nv_s_cp;
+alter compute pool object_detection_gpu_nv_s_cp stop all;
 
 use role accountadmin;
 CREATE STORAGE INTEGRATION modelregistrytospcsyolo_s3int
@@ -44,13 +44,6 @@ SELECT
     directory(@modelregistrytospcsyolo_s3stage);
 
 select * from modelregistrytospcsyolo_presignedurls;
-
-CREATE COMPUTE POOL defect_detection_dist_gpu_nv_s_cp
-  MIN_NODES = 5
-  MAX_NODES = 5
-  INSTANCE_FAMILY = GPU_NV_S
-  AUTO_RESUME = TRUE
-  AUTO_SUSPEND_SECS = 300;
 
 USE ROLE ACCOUNTADMIN;
 
