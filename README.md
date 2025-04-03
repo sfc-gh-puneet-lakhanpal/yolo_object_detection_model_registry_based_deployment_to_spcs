@@ -4,7 +4,8 @@ This repo shows how to deploy Yolo object detection model into SPCS via model re
 
 
 ### Setup instructions
-1. Run `setup.sql` to setup basic objects.
+1. Perform AWS setup: Create S3 bucket in AWS and upload images from sample_images folder into S3 bucket. Also create iam policy and role as highlighted in `aws_setup` folder. 
+1. Run `setup.sql` to setup basic objects. Then go back and update trust relationship for the IAM role. Full guidelines on how to setup S3 storage integration is here: https://docs.snowflake.com/en/user-guide/data-load-s3-config-storage-integration
 2. Import `Object Detection Yolo.ipynb` as a container based Snowflake notebook, select a warehouse and choose `object_detection_gpu_nv_s_cp` compute pool created in the above step. Use the external access integration `allow_all_integration`. Run the above notebook which will deploy the trained Yolo model into Model registry using SPCS.
 3. The notebook above will show how to do batch inferencing. 
 4. For REST API, get the REST API endpoint from the notebook above. Go to the folder `external_rest_api_call` by cding into it and then run the following statements on the terminal.
