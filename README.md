@@ -2,6 +2,8 @@
 
 This repo shows how to deploy Yolo object detection model into SPCS via model registry deployment technique as documented here.https://docs.snowflake.com/en/developer-guide/snowflake-ml/model-registry/container
 
+Note that AWS Setup is not required. In this repo, I start with images sitting in S3 and use Storage integration and presigned urls to perform inferencing using model registry route. Note that presigned urls created on S3 expire in 1 hour, but presigned urls created on snowflake stage expire in 7 days. If images are put in snowflake stage rather than S3, AWS setup and Snowflake S3 integration setup can be ignored.
+
 
 ### Setup instructions
 1. Perform AWS setup: Create S3 bucket in AWS and upload images from sample_images folder into S3 bucket. Also create iam policy and role as highlighted in `aws_setup` folder. 
